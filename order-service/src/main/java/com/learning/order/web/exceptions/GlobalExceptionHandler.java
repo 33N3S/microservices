@@ -1,11 +1,10 @@
 package com.learning.order.web.exceptions;
 
+import com.learning.order.domain.OrderNotFoundException;
 import java.net.URI;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.learning.order.domain.OrderNotFoundException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;

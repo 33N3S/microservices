@@ -17,12 +17,11 @@ public class OrderService {
     @Autowired
     private OrderRepository orderRepository;
 
-    public CreateOrderResponse createOrder(String username, CreateOrderRequest request){
+    public CreateOrderResponse createOrder(String username, CreateOrderRequest request) {
         OrderEntity newOrder = OrderMapper.convertToEntity(request);
         newOrder.setUserName(username);
         OrderEntity savedOrder = this.orderRepository.save(newOrder);
-        log.info("Created Order with orderNumber -="+savedOrder.getOrderNumber());
+        log.info("Created Order with orderNumber -=" + savedOrder.getOrderNumber());
         return new CreateOrderResponse(savedOrder.getOrderNumber());
     }
-
 }

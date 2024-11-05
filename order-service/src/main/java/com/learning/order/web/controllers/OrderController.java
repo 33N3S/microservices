@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-
 @RestController
 @RequestMapping("/api/orders")
 class OrderController {
@@ -25,10 +24,9 @@ class OrderController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    CreateOrderResponse createOrder(@Valid @RequestBody CreateOrderRequest request){
+    CreateOrderResponse createOrder(@Valid @RequestBody CreateOrderRequest request) {
         String username = securityService.getLoginUserName();
-        log.info("Creating order for user"+username);
-        return orderService.createOrder(username,request);
+        log.info("Creating order for user" + username);
+        return orderService.createOrder(username, request);
     }
-
 }

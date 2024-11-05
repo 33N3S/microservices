@@ -1,16 +1,15 @@
 package com.learning.order.testdata;
 
+import static org.instancio.Select.field;
 
-import com.learning.order.domain.models.CreateOrderRequest;
-import com.learning.order.domain.models.OrderItem;
 import com.learning.order.domain.models.Address;
+import com.learning.order.domain.models.CreateOrderRequest;
 import com.learning.order.domain.models.Customer;
-import org.instancio.Instancio;
+import com.learning.order.domain.models.OrderItem;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Set;
-
-import static org.instancio.Select.field;
+import org.instancio.Instancio;
 
 public class TestDataFactory {
     static final List<String> VALID_COUNTIES = List.of("India", "Germany");
