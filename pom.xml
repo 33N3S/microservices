@@ -16,7 +16,8 @@
   </properties>
 
   <modules>
-    <module>catalog-service</module> <!-- Ensure this matches the exact directory name -->
+    <module>catalog-service</module>
+    <module>order-service</module>
   </modules>
 
   <build>
