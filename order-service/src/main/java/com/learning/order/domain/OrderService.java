@@ -17,7 +17,11 @@ public class OrderService {
     @Autowired
     private OrderRepository orderRepository;
 
+    @Autowired
+    private OrderValidator orderValidator;
+
     public CreateOrderResponse createOrder(String username, CreateOrderRequest request) {
+        orderValidator.validate(request);
         OrderEntity newOrder = OrderMapper.convertToEntity(request);
         newOrder.setUserName(username);
         OrderEntity savedOrder = this.orderRepository.save(newOrder);

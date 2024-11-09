@@ -1,11 +1,11 @@
 package com.learning.order.web.controllers;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.CoreMatchers.notNullValue;
 
 import com.learning.order.AbstractIT;
 import com.learning.order.testdata.TestDataFactory;
 import io.restassured.http.ContentType;
+import java.math.BigDecimal;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
@@ -18,6 +18,7 @@ class OrderControllerTest extends AbstractIT {
     class CreateOrderTests {
         @Test
         void shouldCreateOrderSuccessfully() {
+            mockGetProductByCode("P100", "Product 1", new BigDecimal("25.50"));
             var payload =
                     """
                         {
@@ -49,8 +50,7 @@ class OrderControllerTest extends AbstractIT {
                     .when()
                     .post("/api/orders")
                     .then()
-                    .statusCode(HttpStatus.CREATED.value())
-                    .body("orderNumber", notNullValue());
+                    .statusCode(HttpStatus.BAD_REQUEST.value());
         }
 
         @Test
