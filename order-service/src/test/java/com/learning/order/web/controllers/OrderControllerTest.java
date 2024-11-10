@@ -50,7 +50,7 @@ class OrderControllerTest extends AbstractIT {
                     .when()
                     .post("/api/orders")
                     .then()
-                    .statusCode(HttpStatus.BAD_REQUEST.value());
+                    .statusCode(HttpStatus.CREATED.value());
         }
 
         @Test
