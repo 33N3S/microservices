@@ -71,6 +71,7 @@ public class OrderEventService {
         for (OrderEventEntity event : events) {
             this.publishEvent(event);
             orderEventRepository.delete(event);
+            log.info("Deleted event : {}", event.getOrderNumber());
         }
     }
 

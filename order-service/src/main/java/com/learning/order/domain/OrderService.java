@@ -1,10 +1,8 @@
 package com.learning.order.domain;
 
-import com.learning.order.domain.models.CreateOrderRequest;
-import com.learning.order.domain.models.CreateOrderResponse;
-import com.learning.order.domain.models.OrderCreatedEvent;
-import com.learning.order.domain.models.OrderStatus;
+import com.learning.order.domain.models.*;
 import java.util.List;
+import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +53,8 @@ public class OrderService {
                 orderEventService.save(OrderEventMapper.buildOrderDeliveredEvent(order));
 
             } else {
-                log.info("OrderNumber: {} cannot be dilvered", order.getOrderNumber());
+                log.info("OrderNumber: {} cannot be delivered", order.getOrderNumber());
+                orderRepository.updateOrderStatus(order.getOrderNumber(), OrderStatus.CANCELLED);
                 orderEventService.save(
                         OrderEventMapper.buildOrderCancelledEvent(order, "Can't deliver to chosen location"));
             }
@@ -69,5 +68,15 @@ public class OrderService {
     private boolean canBeDelivered(OrderEntity order) {
         return DELIVERY_ALLOWED_COUNTRIES.contains(
                 order.getDeliveryAddress().country().toUpperCase());
+    }
+
+    public List<OrderSummary> findOrders(String userName) {
+        return orderRepository.findByUserName(userName);
+    }
+
+    public Optional<OrderDTO> findUserOrder(String userName, String orderNumber) {
+        return orderRepository
+                .findByUserNameAndOrderNumber(userName, orderNumber)
+                .map(OrderMapper::convertToDTO);
     }
 }
