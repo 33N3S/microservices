@@ -2,19 +2,16 @@ package com.learning.order.web.controllers;
 
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
-
 
 import com.learning.order.AbstractIT;
 import com.learning.order.domain.models.OrderSummary;
 import com.learning.order.testdata.TestDataFactory;
 import io.restassured.common.mapper.TypeRef;
 import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 import java.math.BigDecimal;
 import java.util.List;
-
-import io.restassured.response.Response;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
@@ -100,7 +97,6 @@ class OrderControllerTests extends AbstractIT {
             Response response = given().when().get("/api/orders/{id}", "order-123");
             System.out.println(response.asString()); // Log actual response for troubleshooting
             response.then().statusCode(200);
-
         }
     }
 }
