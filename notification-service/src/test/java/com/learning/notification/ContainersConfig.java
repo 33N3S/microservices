@@ -1,4 +1,4 @@
-package com.learning.order;
+package com.learning.notification;
 
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
@@ -9,9 +9,6 @@ import org.testcontainers.utility.DockerImageName;
 
 @TestConfiguration(proxyBeanMethods = false)
 public class ContainersConfig {
-    static String KEYCLOAK_IMAGE = "quay.io/keycloak/keycloak:24.0.2";
-    static String realmImportFile = "/test-bookstore-realm.json";
-    static String realmName = "bookstore";
 
     @Bean
     @ServiceConnection

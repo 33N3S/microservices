@@ -1,12 +1,13 @@
-package com.learning.order;
+package com.learning.notification;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-@ConfigurationProperties(prefix = "orders")
+@ConfigurationProperties(prefix = "notifications")
 public record ApplicationProperties(
-        String catalogServiceUrl,
         String orderEventsExchange,
         String newOrdersQueue,
         String deliveredOrdersQueue,
         String cancelledOrdersQueue,
-        String errorOrdersQueue) {}
+        String errorOrdersQueue,
+        String supportEmail
+) {}
