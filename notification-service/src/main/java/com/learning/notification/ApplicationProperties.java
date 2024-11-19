@@ -9,5 +9,4 @@ public record ApplicationProperties(
         String deliveredOrdersQueue,
         String cancelledOrdersQueue,
         String errorOrdersQueue,
-        String supportEmail
-) {}
+        String supportEmail) {}

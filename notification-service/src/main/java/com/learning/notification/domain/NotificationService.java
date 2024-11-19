@@ -22,7 +22,7 @@ public class NotificationService {
     @Autowired
     private ApplicationProperties properties;
 
-    public void sendOrderCreatedNotification(OrderCreatedEvent event){
+    public void sendOrderCreatedNotification(OrderCreatedEvent event) {
         String message =
                 """
                 ===================================================
@@ -96,7 +96,6 @@ public class NotificationService {
         sendEmail(properties.supportEmail(), "Order Processing Failure Notification", message);
     }
 
-
     private void sendEmail(String recipient, String subject, String content) {
         try {
             MimeMessage mimeMessage = mailSender.createMimeMessage();
@@ -111,5 +110,4 @@ public class NotificationService {
             throw new RuntimeException("Error while sending email", e);
         }
     }
-
 }
